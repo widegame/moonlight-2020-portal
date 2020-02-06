@@ -1,2 +1,17 @@
 <app-header></app-header>
 <p>runners works!</p>
+
+<ul>
+  <li *ngFor="let runner of view">
+    {{ runner }}
+  </li>
+</ul>
+
+New:
+<ul>
+  <li *ngFor="let runner2 of runnerData">
+    {{ runner2.name }}
+  </li>
+</ul>
+
+<button (click)="addRunner()">Add</button>

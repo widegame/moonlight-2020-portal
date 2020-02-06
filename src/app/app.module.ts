@@ -8,12 +8,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
+import { RunnerService} from './runner.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RunnersComponent } from './runners/runners.component';
 import { SignInComponent } from './account/sign-in/sign-in.component';
+
+
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { SignInComponent } from './account/sign-in/sign-in.component';
   ],
   providers: [
     AngularFireAuthGuard,
+    RunnerService,
   ],
   bootstrap: [AppComponent]
 })
