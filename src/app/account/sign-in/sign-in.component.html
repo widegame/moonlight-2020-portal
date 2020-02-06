@@ -1,1 +1,7 @@
-<p>sign-in works!</p>
+<p>Please sign in!</p>
+
+<form (ngSubmit)="signIn()">
+  <input type="text" id="email" required [(ngModel)]="email" name="Email">
+  <input type="password" id="password" required [(ngModel)]="password" name="Password">
+  <button type="submit"><i class="fas fa-camera"></i> Login</button>
+</form>

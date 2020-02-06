@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import {AngularFireAuth, } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  email: string;
+  password: string;
+
+  constructor(public afAuth: AngularFireAuth, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  signIn() {
+    console.log('Signing in...');
+    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).catch((error) => {
+      // Handle Errors here.
+      console.log(error.code, error.message);
+      // ...
+    }).then(() => {
+      console.log('Signed in as ' + this.email);
+      this.router.navigate(['/']);
+    });
   }
 
 }
