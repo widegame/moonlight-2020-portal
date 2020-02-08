@@ -1,7 +1,29 @@
-<p>Please sign in!</p>
+<div class="login-wrapper">
 
-<form (ngSubmit)="signIn()">
-  <input type="text" id="email" required [(ngModel)]="email" name="Email">
-  <input type="password" id="password" required [(ngModel)]="password" name="Password">
-  <button type="submit"><i class="fas fa-camera"></i> Login</button>
-</form>
+  <!--  Preload loading gif -->
+  <img style="display: none" src="/assets/img/loading.gif" alt="Loading...">
+
+  <div class="login-content">
+
+    <div class="login-logo">
+      <span>widegame.app</span> Moonlight 2020
+    </div>
+
+    <div *ngIf="loading" class="login-loader">
+      <img src="/assets/img/loading.gif" alt="Loading...">
+      <h2>Signing in...</h2>
+    </div>
+
+    <div *ngIf="!loading">
+
+      <form (ngSubmit)="signIn()">
+        <input class="login-input" placeholder="Email address" type="text" id="email" required [(ngModel)]="email" name="Email">
+        <input class="login-input" placeholder="Password" type="password" id="password" required [(ngModel)]="password" name="Password">
+        <div class="login-error" *ngIf="errorMessage">{{errorMessage}}</div>
+        <button class="login-button" [disabled]="loading" type="submit"><i class="fas fa-camera"></i> Sign in</button>
+      </form>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<app-header></app-header>
+
+<p>No. of runners: {{ catcherCount }}</p>
+
+<ul>
+  <li *ngFor="let catcher of catcherData">
+    {{ catcher.name }}
+  </li>
+</ul>

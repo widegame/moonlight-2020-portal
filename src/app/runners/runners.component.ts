@@ -10,31 +10,24 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./runners.component.css']
 })
 
-export class RunnersComponent {
-
-  // runners: Observable<Runner[]>;
+export class RunnersComponent implements OnInit {
 
   runnerData: Runner[];
+  runnerCount = 0;
 
-  view = [];
+  constructor(public runnerService: RunnerService) {
 
-  constructor(public runnerService: RunnerService, route: ActivatedRoute) {
-    // this.runners = runnerService.getRunners(); // Sets the observable declared as runners
-
-    route.params.subscribe(val => {
-      this.runnerService.getRunners()
-        .subscribe(nodes => {
-          this.runnerData = nodes as Runner[];
-          console.log(this.runnerData);
-        });
-    });
+    this.runnerService.getRunners() // Subscribe to runners collection
+      .subscribe(runners => {
+        this.runnerData = runners as Runner[]; // Add to displayed array
+        this.runnerCount = 0;
+        for (const runner of this.runnerData) {
+          this.runnerCount++; // Count number of runners
+        }
+      });
   }
 
-  addRunner() {
-    for (const runner of this.runnerData) {
-     console.log(runner.name);
-     this.view.push(runner.name);
-    }
+  ngOnInit(): void {
   }
 
 

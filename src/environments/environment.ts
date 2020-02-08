@@ -13,6 +13,11 @@ export const environment = {
     messagingSenderId: '459505349782',
     appId: '1:459505349782:web:3b3ca7ce2d795fcafbbeb7',
     measurementId: 'G-4S3JJFHKRN'
+  },
+  globals: {
+    title: 'Moonlight 2020',
+    game: 'moonlight',
+    year: '2020'
   }
 };
 

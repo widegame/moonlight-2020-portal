@@ -12,6 +12,8 @@ export class SignInComponent implements OnInit {
 
   email: string;
   password: string;
+  errorMessage;
+  loading = false;
 
   constructor(public afAuth: AngularFireAuth, private router: Router) { }
 
@@ -19,15 +21,23 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
-    console.log('Signing in...');
-    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).catch((error) => {
-      // Handle Errors here.
-      console.log(error.code, error.message);
-      // ...
-    }).then(() => {
-      console.log('Signed in as ' + this.email);
-      this.router.navigate(['/']);
-    });
+    this.loading = true;
+    if (!this.email) {
+      this.errorMessage = 'Please enter email address!';
+      this.loading = false;
+    } else if (!this.password) {
+      this.errorMessage = 'Please enter password';
+      this.loading = false;
+    } else {
+      console.log('Signing in...');
+      this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password).catch((error) => {
+        console.log(error.code, error.message);
+        this.errorMessage = error.message;
+        this.loading = false;
+      }).then(() => {
+        this.router.navigate(['/']);
+      });
+    }
   }
 
 }

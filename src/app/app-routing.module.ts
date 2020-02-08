@@ -6,12 +6,14 @@ import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angula
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {RunnersComponent} from './runners/runners.component';
 import {SignInComponent} from './account/sign-in/sign-in.component';
+import {CatchersComponent} from './catchers/catchers.component';
 
 const redirectUnauthorizedToLanding = redirectUnauthorizedTo(['/sign-in']);
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLanding) },
   { path: 'runners', component: RunnersComponent, ...canActivate(redirectUnauthorizedToLanding)},
+  { path: 'catchers', component: CatchersComponent, ...canActivate(redirectUnauthorizedToLanding)},
   { path: 'sign-in', component: SignInComponent},
 ];
 
