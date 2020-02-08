@@ -96,6 +96,7 @@ section {
 .login-wrapper {
   width: 100%;
   height: 100vh;
+  background-color: #7414DC;
   background-image: url("/assets/img/login.jpg");
   background-size: cover;
   background-position: center;
@@ -105,7 +106,7 @@ section {
 }
 
 .login-content {
-  width: 500px;
+  width: 450px;
   margin: auto;
   background: rgba(255, 255, 255, 0.9);
   padding: 20px;
@@ -149,7 +150,6 @@ section {
   background-color: #E22E12;
   padding: 5px;
   margin-bottom: 20px;
-  font-weight: 900;
   font-size: 16px;
 }
 

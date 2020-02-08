@@ -16,6 +16,9 @@
 
     <div *ngIf="!loading">
 
+      <h1>Portal Login</h1>
+      <p>Enter your login details below to access the admin portal. This is not the catcher's app - catchers please click <a>here</a> for the app.</p>
+
       <form (ngSubmit)="signIn()">
         <input class="login-input" placeholder="Email address" type="text" id="email" required [(ngModel)]="email" name="Email">
         <input class="login-input" placeholder="Password" type="password" id="password" required [(ngModel)]="password" name="Password">
