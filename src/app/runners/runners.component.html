@@ -1,10 +1,28 @@
 <app-header></app-header>
 
+<div class="wrapper">
+  <h1 class="t-margin-bottom">Running Teams</h1>
+  <p class="t-margin-bottom">Here you can manage all running teams for this event. All teams will show here, regardless of whether they have been disqualified or retired. There are currently <strong>{{ runnerCount }}</strong> total running teams in this game.</p>
 
-<p>No. of runners: {{ runnerCount }}</p>
+  <div class="team-toolbar">
+    <input [(ngModel)]="searchTerm" (ngModelChange)="searchRunners()"><button (click)="searchRunners()">Search</button>
+  </div>
 
-<ul>
-  <li *ngFor="let runner of runnerData">
-    {{ runner.name }}
-  </li>
-</ul>
+  <div *ngIf="!runnerData" class="loader">
+    <img src="/assets/img/loading.gif" alt="Loading...">
+    <h2 class="t-purple">Loading...</h2>
+  </div>
+
+  <div  *ngFor="let runner of runnerView" class="col-4">
+    <div class="team-card" >
+      <div class="team-card-tags">
+        <span>Not Registered</span>
+        <span>Not Checked In</span>
+        <div class="clear"></div>
+      </div>
+      <h2>{{ runner.name }}</h2>
+      <p>Group: <span class="t-purple">Eccleston</span></p>
+    </div>
+  </div>
+
+</div>

@@ -2,8 +2,8 @@
 
 <p>No. of runners: {{ catcherCount }}</p>
 
-<ul>
-  <li *ngFor="let catcher of catcherData">
-    {{ catcher.name }}
-  </li>
-</ul>
+
+<div class="team-card" *ngFor="let catcher of catcherData">
+  {{ catcher.name }}
+</div>
+

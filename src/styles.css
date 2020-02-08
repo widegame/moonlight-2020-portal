@@ -31,6 +31,11 @@ h1 {
   float: left;
 }
 
+.col-4 {
+  width: 33.3%;
+  float: left;
+}
+
 section {
   margin: 0 10px 20px 10px;
 }
@@ -38,6 +43,10 @@ section {
 .padding-sides {
   padding: 0 10px;
   box-sizing: border-box;
+}
+
+.t-purple {
+  color: #7414DC;
 }
 
 .t-large {
@@ -226,5 +235,44 @@ section {
   border-bottom: 1px solid #7414DC;
 }
 
-/* Custom styles */
+/* Other styles */
 
+.loader {
+  text-align: center;
+}
+
+.team-toolbar {
+  width: 100%;
+  padding: 15px;
+  background-color: #F1F1F1;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.team-card {
+  background-color: #F1F1F1;
+  margin: 10px;
+  padding: 8px;
+  transition: all .2s ease-in-out;
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+}
+
+.team-card-tags span {
+  float: left;
+  font-size: 12px;
+  background-color: #E22E12;
+  color: white;
+  padding: 2px 7px;
+  margin-right: 8px;
+}
+
+.team-card h2 {
+  margin: 8px;
+}
+
+.team-card p {
+  margin: 0 8px 8px 8px;
+}

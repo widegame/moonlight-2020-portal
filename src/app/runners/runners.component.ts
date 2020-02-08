@@ -13,13 +13,16 @@ import {ActivatedRoute} from '@angular/router';
 export class RunnersComponent implements OnInit {
 
   runnerData: Runner[];
-  runnerCount = 0;
+  runnerView: Runner[];
+  runnerCount: any = '...';
+  searchTerm: string;
 
   constructor(public runnerService: RunnerService) {
 
     this.runnerService.getRunners() // Subscribe to runners collection
       .subscribe(runners => {
-        this.runnerData = runners as Runner[]; // Add to displayed array
+        this.runnerView = runners as Runner[]; // Add to view array
+        this.runnerData = runners as Runner[]; // Add to data array (for later searches)
         this.runnerCount = 0;
         for (const runner of this.runnerData) {
           this.runnerCount++; // Count number of runners
@@ -28,6 +31,15 @@ export class RunnersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  searchRunners() {
+    this.runnerView = [];
+    for (const runner of this.runnerData) {
+      if (runner.name.toLowerCase().includes(this.searchTerm.toLowerCase())) {
+        this.runnerView.push(runner);
+      }
+    }
   }
 
 
