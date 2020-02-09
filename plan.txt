@@ -1,0 +1,22 @@
+Runner data:
+Runner {
+	name: string,
+	group: string,
+	category: string,			(options: led, solo, explorer, netvet)
+	noMembers: number,
+	noMembersRetired: number,		(if noMembersRetired - noMembers < 4, then retired = true)
+	registered: boolean,
+	checkedIn: boolean,
+	checkInTime: number?,
+	retired: boolean,
+	members: [
+		{ 
+		name: string,
+		teamLeader: boolean,
+		contactNumber: string,
+		dob: date,
+		membershipNo: number,
+		retired: boolean,		(in big function @ end: deduct 1 life for each retired person)
+		}
+	],
+	

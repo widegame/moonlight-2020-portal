@@ -15,10 +15,11 @@
 
   <h2 *ngIf="searchTerm != ''" class="t-margin-bottom"><span class="t-normal">Results for </span>all<span class="t-normal"> teams containing</span> {{searchTerm}}</h2>
   <div  *ngFor="let runner of runnerView" class="col-4">
-    <div class="team-card" >
+    <div class="team-card" (click)="searchTerm='test'">
       <div class="team-card-tags">
-        <span>Not Registered</span>
-        <span>Not Checked In</span>
+        <span class="bg-purple">Solo</span>
+        <span class="bg-teal">Registered</span>
+        <span class="bg-teal">Checked In</span>
         <div class="clear"></div>
       </div>
       <h2>{{ runner.name }}</h2>
