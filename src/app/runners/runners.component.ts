@@ -15,7 +15,7 @@ export class RunnersComponent implements OnInit {
   runnerData: Runner[];
   runnerView: Runner[];
   runnerCount: any = '...';
-  searchTerm: string;
+  searchTerm = '';
 
   constructor(public runnerService: RunnerService) {
 

@@ -5,7 +5,7 @@
   <p class="t-margin-bottom">Here you can manage all running teams for this event. All teams will show here, regardless of whether they have been disqualified or retired. There are currently <strong>{{ runnerCount }}</strong> total running teams in this game.</p>
 
   <div class="team-toolbar">
-    <input [(ngModel)]="searchTerm" (ngModelChange)="searchRunners()"><button (click)="searchRunners()">Search</button>
+    <input type="search" placeholder="Search running teams" [(ngModel)]="searchTerm" (ngModelChange)="searchRunners()"><button (click)="searchRunners()">Search</button>
   </div>
 
   <div *ngIf="!runnerData" class="loader">
@@ -13,6 +13,7 @@
     <h2 class="t-purple">Loading...</h2>
   </div>
 
+  <h2 *ngIf="searchTerm != ''" class="t-margin-bottom"><span class="t-normal">Results for </span>all<span class="t-normal"> teams containing</span> {{searchTerm}}</h2>
   <div  *ngFor="let runner of runnerView" class="col-4">
     <div class="team-card" >
       <div class="team-card-tags">

@@ -57,6 +57,10 @@ section {
   text-align: center;
 }
 
+.t-normal {
+  font-weight: normal;
+}
+
 .t-bold {
   font-weight: 900;
 }
@@ -171,7 +175,6 @@ section {
   background: #7414DC;
   border-radius: 0;
   border: none;
-
 }
 
 /* Header */
