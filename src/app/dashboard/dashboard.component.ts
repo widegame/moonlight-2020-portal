@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Runner, RunnerService } from '../runner.service';
-import { Catcher, CatcherService } from '../catcher.service';
+import {Component, OnInit} from '@angular/core';
+import {Runner, RunnerService} from '../services/runner.service';
+import {Catcher, CatcherService} from '../services/catcher.service';
 
 @Component({
   selector: 'app-dashboard',

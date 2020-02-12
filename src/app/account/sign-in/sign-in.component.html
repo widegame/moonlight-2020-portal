@@ -20,10 +20,13 @@
       <p>Enter your login details below to access the admin portal. This is not the catcher's app - catchers please click <a>here</a> for the app.</p>
 
       <form (ngSubmit)="signIn()">
-        <input class="login-input" placeholder="Email address" type="text" id="email" required [(ngModel)]="email" name="Email">
-        <input class="login-input" placeholder="Password" type="password" id="password" required [(ngModel)]="password" name="Password">
+        <input class="login-input" placeholder="Email address" type="text" id="email" required [(ngModel)]="email"
+               name="Email">
+        <input class="login-input" placeholder="Password" type="password" id="password" required [(ngModel)]="password"
+               name="Password">
         <div class="login-error" *ngIf="errorMessage">{{errorMessage}}</div>
-        <button class="login-button" [disabled]="loading" type="submit"><i class="fas fa-camera"></i> Sign in</button>
+        <button class="login-button" [disabled]="loading" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in
+        </button>
       </form>
 
     </div>

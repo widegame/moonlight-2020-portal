@@ -1,3 +1,5 @@
+// DATA PLAN:
+
 Runner data:
 Runner {
 	name: string,
@@ -20,3 +22,110 @@ Runner {
 		}
 	],
 	
+APP:
+	
+	> Sign in using google auth - when signed in, set to true - see teams not logged in
+
+	> Upload whenever connection available, only upload photo for manual
+	> Save name as 'Getting name... (team 003)', on upload bind name from DB
+	> If catch is before or after game, catch.status = denied - it will be skipped
+	> If ready, deny catch if out of bounds
+	> Set catch to 'checked after upload', in case of catches added after leaderboard has started generating
+	> At end check catches with QR code for checkin (in settings > checkin code)
+	
+	Would this mean array of catches just on catcher documents, not whole collection?
+		No - you need to compare each catch to catches from other catchers for the half hour check
+
+
+
+The big one (this might work?!):
+
+// If a previous leaderboard has already been created, set all catch statuses to 'pending'
+
+for (catch of catches) {
+	if (catch.status != 'denied') {
+
+		// Approve catch & work out value
+		catch.status = 'approved'
+		catch.catchValue - runner.catches *2 // Work out value of catch from which no. catch it is
+		catcher.points += catch.catchValue // Add this catch's point value to the catcher's point score
+		runner.catches++ // Add catch to runner's points
+		
+		// Remove invalid catches after this
+		let hour = catch.time + 60mins
+		let halfHour = catch.time + 30mins
+
+		for (catchCheck of catches) {
+			if (catch.time is between catch.time and halfHour) {
+				catchCheck.status = 'denied'
+				catchCheck.reason = 'Team caught less than 30 mins ago'
+			}
+			else if (catchCheck.time is between catch.time and hour && catch.catcher == catchCheck.catcher) {
+				catchCheck.status = 'denied'
+				catchCheck.reason = 'Team was caught by same catcher in last hour'
+			}
+			else if (catchCheck.time > hour){
+				break // Don't go through catches after an hour - they don't matter
+			}
+		}
+	}
+}
+
+
+
+Help section:
+- Contact & Emergency numbers
+- Yellow Card
+- Game Rules
+- FAQs
+
+
+ADMIN:
+
+New Menu:
+
+- Running Teams
+- Catching Teams
+- Registration
+- Live Catches
+- Check-in
+- Leaderboard
+- Notifications
+- Settings
+
+Design team info like this:
+https://scouts.org.uk/activities/invention-stations/
+
+Use feather icons
+
+
+// At end, set "up to date" to true, if catch added, set it to false.
+
+
+// Leaderboard:
+Show for overall, solo, lead, explorer, net-vet
+	Overall - don't show net-vet
+		Rank | Team name | Position | Catches | First Catch Time
+
+// Use selectize.js for adding a catch - team names
+
+// https://preview-dev.tabler.io/users.html for list of runners + catchers
+
+// Checkin:
+
+	- Connect session to phone / manual option
+	- First team member scanned / typed in code / typed team name
+	- Shows 4/7 members accounted for
+	- Shows team name, members + any dropouts, Catches other side
+	- Each member then scanned in
+	- Option to undo checkin for fuckups
+	- When full team checked in, confirm, next team
+	- Option to disqualify
+
+// For app if wristbands?:
+	
+	- For manual input, ensure 4 digits |_| |_| |_| |_|
+	- Each wristband has 3 digit team code + team member, e.g.:
+		Team 45, member 3 would be 0453
+
+

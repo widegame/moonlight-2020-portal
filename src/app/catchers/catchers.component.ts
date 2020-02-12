@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Catcher, CatcherService} from '../catcher.service';
+import {Component, OnInit} from '@angular/core';
+import {Catcher, CatcherService} from '../services/catcher.service';
 
 @Component({
   selector: 'app-catchers',

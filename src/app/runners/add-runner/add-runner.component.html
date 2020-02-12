@@ -1,0 +1,153 @@
+<app-header></app-header>
+
+<div class="wrapper">
+  <a routerLink="/runners" (click)="alert('Show confirmation here!')">< Back to Runners</a>
+  <h1 class="t-margin-bottom t-margin-top">Add a Running Team</h1>
+
+
+  <div *ngIf="currentTab == 1">
+    <div class="card bg-light t-margin-bottom">
+      <h2 class="t-margin-bottom">Basic info</h2>
+
+      <div class="col-6 padding-sides">
+        <label for="teamName">Team Name:</label>
+        <input autocomplete="off" id="teamName" class="full-width" [(ngModel)]="name">
+      </div>
+
+      <div class="col-6 padding-sides">
+        <label for="group">Group / Unit:</label>
+        <input required id="group" class="full-width" [(ngModel)]="group">
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div class="card bg-light">
+
+      <h2 class="t-margin-bottom">Category</h2>
+
+      <div class="col-3 t-margin-bottom padding-sides">
+        <div class="category-chooser" (click)="setCategory('solo')"
+             [class.category-chooser-selected]="category == 'solo'">
+          <strong>Solo</strong>
+          <p>Add a solo team for scouts aged 10½ to 14</p>
+        </div>
+      </div>
+
+      <div class="col-3 t-margin-bottom padding-sides">
+        <div class="category-chooser" (click)="setCategory('led')"
+             [class.category-chooser-selected]="category == 'led'">
+          <strong>Led</strong>
+          <p>Add a team of scouts with an adult leader</p>
+        </div>
+      </div>
+
+      <div class="col-3 t-margin-bottom padding-sides">
+        <div class="category-chooser" (click)="setCategory('explorer')"
+             [class.category-chooser-selected]="category == 'explorer'">
+          <strong>Explorer</strong>
+          <p>Add a team for explorers aged 14-18</p>
+        </div>
+      </div>
+
+      <div class="col-3 t-margin-bottom padding-sides">
+        <div class="category-chooser" (click)="setCategory('netvet')"
+             [class.category-chooser-selected]="category == 'netvet'">
+          <strong>NetVet</strong>
+          <p>Add a network / veteran team for ages 18+</p>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+    </div>
+
+    <button class="t-margin-bottom btn-next-right" (click)="nextTab()">Next</button>
+    <p *ngIf="error" class="stepper-error"><i class="fas fa-exclamation-triangle"></i> {{error}}</p>
+  </div>
+
+  <div *ngIf="currentTab == 2">
+
+    <div class="card bg-light t-margin-bottom">
+      <h2 class="t-margin-bottom">Contact info</h2>
+
+      <div class="col-4 padding-sides">
+        <label for="contactName">Contact Name:</label>
+        <input name="fullname" autocomplete="off" id="contactName" class="full-width" [(ngModel)]="contactName">
+
+        <label for="contactEmail">Contact Email:</label>
+        <input name="email" autocomplete="off" id="contactEmail" class="full-width" [(ngModel)]="contactEmail">
+      </div>
+
+      <div class="col-4 padding-sides">
+        <label for="contactMobile">Contact Mobile:</label>
+        <input name="mobile" required id="contactMobile" class="full-width" [(ngModel)]="contactMobile">
+
+        <label for="contactPhone">Contact Phone:</label>
+        <input name="phone" required id="contactPhone" class="full-width" [(ngModel)]="contactNumber">
+      </div>
+
+      <div class="col-4 padding-sides">
+        <label for="contactAddress">Contact Address:</label>
+        <textarea name="address" required id="contactAddress" class="full-width contact-address"
+                  [(ngModel)]="contactAddress"></textarea>
+      </div>
+
+      <div class="clear"></div>
+    </div>
+
+    <button class="btn-prev-left" (click)="prevTab()">Previous</button>
+    <button class="btn-next-right" (click)="nextTab()">Next</button>
+    <p *ngIf="error" class="stepper-error"><i class="fas fa-exclamation-triangle"></i> {{error}}</p>
+
+  </div>
+
+  <div *ngIf="currentTab == 3">
+
+    <h2 class="t-margin-bottom">Team Members</h2>
+
+    <div *ngFor="let member of teamMembers; let i = index" class="add-team-members">
+
+      <div class="add-team-member">
+        <h3 class="t-margin-bottom">Member {{member.leader == true ? (i + 1) + " (Team Leader)" : (i + 1)}}:</h3>
+        <div class="col-4 padding-sides">
+          <label for="name">Name:</label>
+          <input type="text" autocomplete="off" class="full-width" id="name" [(ngModel)]="teamMembers[i].name">
+        </div>
+        <div class="col-4 padding-sides">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" class="full-width" id="dob" [(ngModel)]="teamMembers[i].dob">
+        </div>
+        <div class="col-4 padding-sides">
+          <label for="number">Contact Number:</label>
+          <input type="tel" autocomplete="off" class="full-width" id="number"
+                 [(ngModel)]="teamMembers[i].contactNumber">
+        </div>
+        <div class="clear"></div>
+        <div class="col-4 padding-sides">
+          <label for="memNo">Membership Number:</label>
+          <input type="text" autocomplete="off" class="full-width" id="memNo" [(ngModel)]="teamMembers[i].memNo">
+        </div>
+        <div class="col-8 padding-sides">
+          <button *ngIf="!teamMembers[i].leader" class="btn-next-right bg-red" (click)="removeRunner(i)"><i
+            class="fas fa-trash-alt"></i> Remove
+          </button>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+    </div>
+
+    <div *ngIf="teamMembers.length < 7" class="add-team-member-btn" (click)="addRunner()">
+      <div class="add-team-member-sign"><i class="fas fa-plus"></i></div>
+      <h3> Add another team member</h3>
+      <div class="clear"></div>
+    </div>
+
+
+    <button class="btn-prev-left" (click)="prevTab()">Previous</button>
+    <button class="btn-next-right" (click)="nextTab()">Next</button>
+    <p *ngIf="error" class="stepper-error"><i class="fas fa-exclamation-triangle"></i> {{error}}</p>
+  </div>
+
+
+</div>

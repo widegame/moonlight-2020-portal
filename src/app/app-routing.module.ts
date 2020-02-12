@@ -1,20 +1,45 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
+import {redirectUnauthorizedTo, AngularFireAuthGuard} from '@angular/fire/auth-guard';
 
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {RunnersComponent} from './runners/runners.component';
 import {SignInComponent} from './account/sign-in/sign-in.component';
 import {CatchersComponent} from './catchers/catchers.component';
+import {AddRunnerComponent} from './runners/add-runner/add-runner.component';
 
-const redirectUnauthorizedToLanding = redirectUnauthorizedTo(['/sign-in']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['sign-in']);
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: DashboardComponent, ...canActivate(redirectUnauthorizedToLanding) },
-  { path: 'runners', component: RunnersComponent, ...canActivate(redirectUnauthorizedToLanding)},
-  { path: 'catchers', component: CatchersComponent, ...canActivate(redirectUnauthorizedToLanding)},
-  { path: 'sign-in', component: SignInComponent},
+  {
+    path: '',
+    pathMatch: 'full',
+    component: DashboardComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {
+    path: 'runners',
+    component: RunnersComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {
+    path: 'catchers',
+    component: CatchersComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {
+    path: 'runners/add',
+    component: AddRunnerComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {
+    path: 'sign-in', component: SignInComponent
+  },
 ];
 
 @NgModule({

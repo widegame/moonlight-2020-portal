@@ -1,8 +1,6 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import { Observable } from 'rxjs';
-import { Runner } from '../runner.service';
-import { RunnerService } from '../runner.service';
-import {ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Runner} from '../services/runner.service';
+import {RunnerService} from '../services/runner.service';
 
 @Component({
   selector: 'app-runners',
@@ -21,8 +19,8 @@ export class RunnersComponent implements OnInit {
 
     this.runnerService.getRunners() // Subscribe to runners collection
       .subscribe(runners => {
-        this.runnerView = runners as Runner[]; // Add to view array
         this.runnerData = runners as Runner[]; // Add to data array (for later searches)
+        this.searchRunners();
         this.runnerCount = 0;
         for (const runner of this.runnerData) {
           this.runnerCount++; // Count number of runners

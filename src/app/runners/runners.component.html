@@ -5,7 +5,13 @@
   <p class="t-margin-bottom">Here you can manage all running teams for this event. All teams will show here, regardless of whether they have been disqualified or retired. There are currently <strong>{{ runnerCount }}</strong> total running teams in this game.</p>
 
   <div class="team-toolbar">
-    <input type="search" placeholder="Search running teams" [(ngModel)]="searchTerm" (ngModelChange)="searchRunners()"><button (click)="searchRunners()">Search</button>
+    <div class="search">
+      <input type="search" placeholder="Search running teams" [(ngModel)]="searchTerm"
+             (ngModelChange)="searchRunners()">
+      <button (click)="searchRunners()"><i class="fas fa-search"></i></button>
+    </div>
+    <a routerLink="/runners/add" class="btn add-runner-btn">Add Runner</a>
+    <div class="clear"></div>
   </div>
 
   <div *ngIf="!runnerData" class="loader">

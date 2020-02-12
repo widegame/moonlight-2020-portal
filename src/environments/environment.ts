@@ -15,7 +15,7 @@ export const environment = {
     measurementId: 'G-4S3JJFHKRN'
   },
   globals: {
-    title: 'Moonlight 2020',
+    title: 'Moonlight 2020', // Add in environments.prod.ts too!!
     game: 'moonlight',
     year: '2020'
   }
