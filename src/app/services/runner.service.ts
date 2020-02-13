@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {map} from 'rxjs/operators';
 
 export interface Runner {
   name: string;
@@ -14,6 +15,10 @@ export interface Runner {
   contactNumber: string;
   contactAddress: string;
 
+}
+
+export interface RunnerWithId extends Runner {
+  id: string;
 }
 
 export interface Member {
@@ -30,7 +35,7 @@ export interface Member {
 export class RunnerService {
 
   private runnersCollection: AngularFirestoreCollection<Runner>;
-  runners: Observable<Runner[]>;
+  runners: Observable<RunnerWithId[]>;
 
   private runnerDoc: AngularFirestoreDocument<Runner>;
   runner: Observable<Runner>;
@@ -40,7 +45,13 @@ export class RunnerService {
 
   getRunners() {
     this.runnersCollection = this.afs.collection<Runner>(environment.globals.game + '/' + environment.globals.year + '/runners');
-    return this.runners = this.runnersCollection.valueChanges();
+    return this.runners = this.runnersCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Runner;
+        const id = a.payload.doc.id;
+        return {id, ...data};
+      }))
+    );
   }
 
   getRunner(id: string) {

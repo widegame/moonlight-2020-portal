@@ -21,15 +21,16 @@
 
   <h2 *ngIf="searchTerm != ''" class="t-margin-bottom"><span class="t-normal">Results for </span>all<span class="t-normal"> teams containing</span> {{searchTerm}}</h2>
   <div  *ngFor="let runner of runnerView" class="col-4">
-    <div class="team-card" (click)="searchTerm='test'">
+    <div class="team-card" [routerLink]="'/runners/view/'+runner.id">
       <div class="team-card-tags">
-        <span class="bg-purple">Solo</span>
+        <span class="bg-purple t-capitalize">{{runner.category}}</span>
         <span class="bg-teal">Registered</span>
         <span class="bg-teal">Checked In</span>
+        <span class="bg-red">{{runner.id}}</span>
         <div class="clear"></div>
       </div>
       <h2>{{ runner.name }}</h2>
-      <p>Group: <span class="t-purple">Eccleston</span></p>
+      <p>Group: <span class="t-purple">{{runner.group}}</span></p>
     </div>
   </div>
 

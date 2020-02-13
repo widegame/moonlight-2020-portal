@@ -17,6 +17,8 @@ import {RunnersComponent} from './runners/runners.component';
 import {SignInComponent} from './account/sign-in/sign-in.component';
 import {CatchersComponent} from './catchers/catchers.component';
 import {AddRunnerComponent} from './runners/add-runner/add-runner.component';
+import {ViewRunnerComponent} from './runners/view-runner/view-runner.component';
+import {NotFoundComponent} from './errors/not-found/not-found.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import {AddRunnerComponent} from './runners/add-runner/add-runner.component';
     RunnersComponent,
     SignInComponent,
     CatchersComponent,
-    AddRunnerComponent
+    AddRunnerComponent,
+    ViewRunnerComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

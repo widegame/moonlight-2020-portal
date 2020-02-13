@@ -99,6 +99,45 @@ section {
   box-sizing: border-box;
 }
 
+.m-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  padding: 15px 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Background colors */
+.bg-purple {
+  background-color: #7414DC;
+  color: white;
+}
+
+.bg-teal {
+  background-color: #00A794;
+  color: white;
+}
+
+.bg-red {
+  background-color: #E22E12;
+  color: white;
+}
+
+.bg-yellow {
+  background-color: #FFE627;
+}
+
+.bg-light {
+  background-color: #F1F1F1;
+}
+
+/* Text Properties */
+
 .t-purple {
   color: #7414DC;
 }
@@ -135,41 +174,8 @@ section {
   margin: 0;
 }
 
-.m-center {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.card {
-  padding: 15px 20px;
-}
-
-.full-width {
-  width: 100%;
-}
-
-/* Background colors */
-.bg-purple {
-  background-color: #7414DC;
-  color: white;
-}
-
-.bg-teal {
-  background-color: #00A794;
-  color: white;
-}
-
-.bg-red {
-  background-color: #E22E12;
-  color: white;
-}
-
-.bg-yellow {
-  background-color: #FFE627;
-}
-
-.bg-light {
-  background-color: #F1F1F1;
+.t-capitalize {
+  text-transform: capitalize;
 }
 
 /* Login */

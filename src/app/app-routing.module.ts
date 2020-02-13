@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
 import {redirectUnauthorizedTo, AngularFireAuthGuard} from '@angular/fire/auth-guard';
 
@@ -8,6 +8,8 @@ import {RunnersComponent} from './runners/runners.component';
 import {SignInComponent} from './account/sign-in/sign-in.component';
 import {CatchersComponent} from './catchers/catchers.component';
 import {AddRunnerComponent} from './runners/add-runner/add-runner.component';
+import {ViewRunnerComponent} from './runners/view-runner/view-runner.component';
+import {NotFoundComponent} from './errors/not-found/not-found.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['sign-in']);
 
@@ -34,6 +36,18 @@ const routes: Routes = [
   {
     path: 'runners/add',
     component: AddRunnerComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {
+    path: 'runners/view/:userID',
+    component: ViewRunnerComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {
+    path: '404',
+    component: NotFoundComponent,
     canActivate: [AngularFireAuthGuard],
     data: {authGuardPipe: redirectUnauthorizedToLogin}
   },

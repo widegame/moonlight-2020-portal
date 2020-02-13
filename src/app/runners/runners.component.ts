@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Runner} from '../services/runner.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Runner, RunnerWithId} from '../services/runner.service';
 import {RunnerService} from '../services/runner.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-runners',
@@ -8,18 +9,20 @@ import {RunnerService} from '../services/runner.service';
   styleUrls: ['./runners.component.css']
 })
 
-export class RunnersComponent implements OnInit {
+export class RunnersComponent implements OnDestroy {
 
-  runnerData: Runner[];
-  runnerView: Runner[];
+  runnerSubscription: Subscription;
+
+  runnerData: RunnerWithId[];
+  runnerView: RunnerWithId[];
   runnerCount: any = '...';
   searchTerm = '';
 
   constructor(public runnerService: RunnerService) {
 
-    this.runnerService.getRunners() // Subscribe to runners collection
+    this.runnerSubscription = this.runnerService.getRunners() // Subscribe to runners collection
       .subscribe(runners => {
-        this.runnerData = runners as Runner[]; // Add to data array (for later searches)
+        this.runnerData = runners as RunnerWithId[]; // Add to data array (for later searches)
         this.searchRunners();
         this.runnerCount = 0;
         for (const runner of this.runnerData) {
@@ -28,7 +31,9 @@ export class RunnersComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
+  ngOnDestroy(): void {
+    console.log('Unsubscribing from data streams.');
+    this.runnerSubscription.unsubscribe();
   }
 
   searchRunners() {
