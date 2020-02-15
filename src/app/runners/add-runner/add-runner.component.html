@@ -25,35 +25,43 @@
 
       <h2 class="t-margin-bottom">Category</h2>
 
-      <div class="col-3 t-margin-bottom padding-sides">
+      <div class="col-5ths t-margin-bottom padding-sides">
         <div class="category-chooser" (click)="setCategory('solo')"
              [class.category-chooser-selected]="category == 'solo'">
           <strong>Solo</strong>
-          <p>Add a solo team for scouts aged 10½ to 14</p>
+          <p class="t-margin-none">Scouts aged 10 to 14.5 without a leader</p>
         </div>
       </div>
 
-      <div class="col-3 t-margin-bottom padding-sides">
+      <div class="col-5ths t-margin-bottom padding-sides">
         <div class="category-chooser" (click)="setCategory('led')"
              [class.category-chooser-selected]="category == 'led'">
           <strong>Led</strong>
-          <p>Add a team of scouts with an adult leader</p>
+          <p class="t-margin-none">Scout teams with an adult / explorer leader</p>
         </div>
       </div>
 
-      <div class="col-3 t-margin-bottom padding-sides">
+      <div class="col-5ths t-margin-bottom padding-sides">
         <div class="category-chooser" (click)="setCategory('explorer')"
              [class.category-chooser-selected]="category == 'explorer'">
           <strong>Explorer</strong>
-          <p>Add a team for explorers aged 14-18</p>
+          <p class="t-margin-none">Explorer team with 2 or more members aged 13.5 to 18</p>
         </div>
       </div>
 
-      <div class="col-3 t-margin-bottom padding-sides">
-        <div class="category-chooser" (click)="setCategory('netvet')"
-             [class.category-chooser-selected]="category == 'netvet'">
-          <strong>NetVet</strong>
-          <p>Add a network / veteran team for ages 18+</p>
+      <div class="col-5ths t-margin-bottom padding-sides">
+        <div class="category-chooser" (click)="setCategory('network')"
+             [class.category-chooser-selected]="category == 'network'">
+          <strong>Network</strong>
+          <p class="t-margin-none">For teams with two or more members over 18</p>
+        </div>
+      </div>
+
+      <div class="col-5ths t-margin-bottom padding-sides">
+        <div class="category-chooser" (click)="setCategory('veteran')"
+             [class.category-chooser-selected]="category == 'veteran'">
+          <strong>Veteran</strong>
+          <p class="t-margin-none">For teams with two or more members over 25</p>
         </div>
       </div>
 

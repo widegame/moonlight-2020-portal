@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "site": "portal-2020-moonlight",
+    "public": "dist/portal",
+    "ignore": [
+      "firebase.json",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

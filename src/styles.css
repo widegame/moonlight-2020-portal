@@ -90,6 +90,11 @@ h1 {
   float: left;
 }
 
+.col-5ths {
+  width: 20%;
+  float: left;
+}
+
 section {
   margin: 0 10px 20px 10px;
 }
@@ -134,6 +139,11 @@ section {
 
 .bg-light {
   background-color: #F1F1F1;
+}
+
+.bg-white {
+  background-color: white;
+  color: black;
 }
 
 /* Text Properties */

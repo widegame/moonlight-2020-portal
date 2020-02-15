@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "wide-game": {
+      "hosting": {
+        "portal": [
+          "wide-game"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "wide-game"
+  }
+}

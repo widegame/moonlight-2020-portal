@@ -23,10 +23,10 @@
   <div  *ngFor="let runner of runnerView" class="col-4">
     <div class="team-card" [routerLink]="'/runners/view/'+runner.id">
       <div class="team-card-tags">
+        <span class="bg-white t-bold">{{runner.id.substr(2)}}</span>
         <span class="bg-purple t-capitalize">{{runner.category}}</span>
         <span class="bg-teal">Registered</span>
-        <span class="bg-teal">Checked In</span>
-        <span class="bg-red">{{runner.id}}</span>
+        <span class="bg-red">Not Checked In</span>
         <div class="clear"></div>
       </div>
       <h2>{{ runner.name }}</h2>

@@ -1,29 +1,44 @@
+? Questions
+  > If a team goes over 10 lives, are they disqualified
+
+
+! Important:
+  > Split Network & Veteran - vet teams aren't eligible for overall, but network are
+  > Show the reg plate during a team catch
+
+
+
 // DATA PLAN:
 
 Runner data:
 Runner {
 	name: string,
 	group: string,
-	category: string,			(options: led, solo, explorer, netvet)
+	category: string,			      (options: led, solo, explorer, network, veteran)
 	noMembers: number,
 	noMembersRetired: number,		(if noMembersRetired - noMembers < 4, then retired = true)
 	registered: boolean,
 	checkedIn: boolean,
 	checkInTime: number?,
-	retired: boolean,
-	members: [
-		{ 
+	status: string,             (options: 'active, disqualified, retired')
+	reason: string,             (if disqualified, show reason why)
+	livesLost: number,          (if > 10, disqualify?)
+	members: [{
 		name: string,
 		teamLeader: boolean,
 		contactNumber: string,
 		dob: date,
 		membershipNo: number,
-		retired: boolean,		(in big function @ end: deduct 1 life for each retired person)
-		}
-	],
-	
+		retired: boolean,		      (in big function @ end: deduct 1 life for each retired person)
+		}],
+  penalties: [{
+    type: string,             (options: retirement, outOfBounds, etc.)
+    lives: number,
+    description: string,
+  }],
+
 APP:
-	
+
 	> Sign in using google auth - when signed in, set to true - see teams not logged in
 
 	> Upload whenever connection available, only upload photo for manual
@@ -32,7 +47,7 @@ APP:
 	> If ready, deny catch if out of bounds
 	> Set catch to 'checked after upload', in case of catches added after leaderboard has started generating
 	> At end check catches with QR code for checkin (in settings > checkin code)
-	
+
 	Would this mean array of catches just on catcher documents, not whole collection?
 		No - you need to compare each catch to catches from other catchers for the half hour check
 
@@ -50,7 +65,7 @@ for (catch of catches) {
 		catch.catchValue - runner.catches *2 // Work out value of catch from which no. catch it is
 		catcher.points += catch.catchValue // Add this catch's point value to the catcher's point score
 		runner.catches++ // Add catch to runner's points
-		
+
 		// Remove invalid catches after this
 		let hour = catch.time + 60mins
 		let halfHour = catch.time + 30mins
@@ -123,7 +138,7 @@ Show for overall, solo, lead, explorer, net-vet
 	- Option to disqualify
 
 // For app if wristbands?:
-	
+
 	- For manual input, ensure 4 digits |_| |_| |_| |_|
 	- Each wristband has 3 digit team code + team member, e.g.:
 		Team 45, member 3 would be 0453
