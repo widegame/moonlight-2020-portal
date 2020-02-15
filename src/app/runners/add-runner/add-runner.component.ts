@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SettingsService} from '../../services/settings.service';
-import {RunnerService} from '../../services/runner.service';
+import {Member, Runner, RunnerService} from '../../services/runner.service';
 import {take} from 'rxjs/operators';
 
 @Component({
@@ -24,12 +24,13 @@ export class AddRunnerComponent implements OnInit {
   contactMobile: string;
   contactAddress: string;
 
-  teamMembers = [{
+  teamMembers: Array<Member> = [{
     name: '',
     dob: '',
     leader: true,
     contactNumber: '',
-    memNo: ''
+    memNo: '',
+    retired: false
   }];
 
   constructor(public settingsService: SettingsService, public runnerService: RunnerService) {
@@ -105,7 +106,8 @@ export class AddRunnerComponent implements OnInit {
       dob: '',
       leader: false,
       contactNumber: '',
-      memNo: ''
+      memNo: '',
+      retired: false,
     });
   }
 
@@ -114,8 +116,18 @@ export class AddRunnerComponent implements OnInit {
   }
 
   uploadRunner() {
+    let noMembers = 0;
+    for (const member of this.teamMembers) {
+      noMembers++;
+    }
 
-    const teamData = {
+    const checkInTime = new Date(0);
+    checkInTime.setHours(0, 0, 0);
+
+    const firstCatchTime = new Date(0);
+    firstCatchTime.setHours(0, 0, 0);
+
+    const teamData: Runner = {
       name: this.name,
       category: this.category,
       group: this.group,
@@ -125,6 +137,16 @@ export class AddRunnerComponent implements OnInit {
       contactNumber: this.contactNumber,
       contactMobile: this.contactMobile,
       contactAddress: this.contactAddress,
+      noMembers,
+      noActiveMembers: noMembers,
+      status: 'active',
+      registered: false,
+      checkedIn: false,
+      penalties: [],
+      reason: '',
+      livesLost: 0,
+      checkInTime,
+      firstCatchTime,
     };
 
     this.settingsService.getCounts().pipe(take(1)).subscribe(settings => {

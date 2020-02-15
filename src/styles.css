@@ -17,6 +17,20 @@ a {
   text-decoration: none;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0 5px;
+  height: 42px;
+}
+
+tr:hover {
+  background-color: #F1F1F1;
+  border-color: #F1F1F1;
+}
+
 button, .btn {
   padding: 5px 15px;
   font-family: 'Nunito Sans', sans-serif;
@@ -75,8 +89,18 @@ h1 {
   float: left;
 }
 
+.col-7 {
+  width: 58.3%;
+  float: left;
+}
+
 .col-6 {
   width: 50%;
+  float: left;
+}
+
+.col-5 {
+  width: 41.6%;
   float: left;
 }
 
@@ -96,7 +120,7 @@ h1 {
 }
 
 section {
-  margin: 0 10px 20px 10px;
+  margin: 0 15px 25px 15px;
 }
 
 .padding-sides {
@@ -110,11 +134,25 @@ section {
 }
 
 .card {
-  padding: 15px 20px;
+  padding: 10px 15px;
+}
+
+.card-table {
+  border: 2px solid #F1F1F1;
+  margin-top: -30px;
+  padding: 10px;
 }
 
 .full-width {
   width: 100%;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
 }
 
 /* Background colors */
@@ -135,6 +173,7 @@ section {
 
 .bg-yellow {
   background-color: #FFE627;
+  color: black;
 }
 
 .bg-light {
@@ -156,8 +195,20 @@ section {
   color: #E22E12;
 }
 
+.t-white {
+  color: white;
+}
+
 .t-large {
   font-size: 50px;
+}
+
+.t-left {
+  text-align: left;
+}
+
+.t-right {
+  text-align: right;
 }
 
 .t-center {
@@ -442,6 +493,25 @@ section {
 .add-runner-btn {
   float: right;
   border: 2px solid #7414DC;
+}
+
+.qr-card h2 {
+  float: left;
+  height: 100px;
+  line-height: 100px;
+  width: calc(100% - 100px);
+  text-align: center;
+}
+
+.qr-card img {
+  float: right;
+  display: block;
+  background-color: white;
+  height: 100px;
+}
+
+.quick-buttons {
+  margin: 5px 0;
 }
 
 

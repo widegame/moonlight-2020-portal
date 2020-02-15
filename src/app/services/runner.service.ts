@@ -9,12 +9,21 @@ export interface Runner {
   category: string;
   group: string;
   members: Array<Member>;
+  penalties: Array<Penalty>;
   contactName: string;
   contactEmail: string;
   contactMobile: string;
   contactNumber: string;
   contactAddress: string;
-
+  noMembers: number;
+  noActiveMembers: number;
+  status: string;
+  reason: string;
+  registered: boolean;
+  checkedIn: boolean;
+  checkInTime: Date;
+  firstCatchTime: Date;
+  livesLost: number;
 }
 
 export interface RunnerWithId extends Runner {
@@ -27,6 +36,13 @@ export interface Member {
   leader: boolean;
   contactNumber: string;
   memNo: string;
+  retired: boolean;
+}
+
+export interface Penalty {
+  type: string;
+  lives: number;
+  description: number;
 }
 
 @Injectable({

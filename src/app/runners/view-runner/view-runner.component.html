@@ -9,12 +9,103 @@
   </div>
 
   <div *ngIf="runner">
-    <h1 class="t-margin-bottom t-margin-top">{{runner.name}}</h1>
-    <div class="team-card-tags">
-      <span class="bg-purple t-capitalize">{{runner.category}}</span>
-      <span class="bg-teal">Registered</span>
-      <span class="bg-red">Not Checked In</span>
-      <div class="clear"></div>
+
+    <div class="col-8">
+
+      <section>
+        <h1 class="t-margin-bottom t-margin-top">{{runner.name}}</h1>
+        <div class="team-card-tags">
+          <span class="bg-purple t-capitalize">{{runner.category}}</span>
+          <span *ngIf="runner.registered" class="bg-teal">Registered</span>
+          <span *ngIf="!runner.registered" class="bg-red">Not Registered</span>
+          <span *ngIf="runner.checkedIn" class="bg-teal">Checked In</span>
+          <span *ngIf="!runner.checkedIn" class="bg-red">Not Checked In</span>
+          <div class="clear"></div>
+        </div>
+        <p class="t-margin-top">Group: <span class="t-purple">{{runner.group}}</span></p>
+        <p *ngIf="runner.checkedIn" class="t-margin-top">This team was checked in at <span
+          class="t-purple">{{runner.checkInTime}}</span>.</p>
+      </section>
+
+      <section class="bg-light card">
+        <h2 class="t-margin-bottom">Contact Info</h2>
+        <div class="col-6">
+          <p><strong>Contact Name:</strong> {{runner.contactName}}</p>
+          <p><strong>Contact Email:</strong> {{runner.contactEmail}}</p>
+        </div>
+        <div class="col-6">
+          <p><strong>Contact Mobile:</strong> {{runner.contactMobile}}</p>
+          <p><strong>Contact Phone:</strong> {{runner.contactNumber == '' ? 'runner.contactNumber' : 'None given'}}</p>
+        </div>
+        <div class="clear"></div>
+        <p><strong>Contact Address:</strong> {{runner.contactAddress}}</p>
+      </section>
+
+      <section class="card bg-light">
+        <h2 class="float-left t-margin-bottom">Team Members</h2>
+        <button class="bg-purple float-right">Edit Members</button>
+        <div class="clear"></div>
+        <p class="t-margin-none">Below are all the members of this running team. The team leader shows in purple.
+          Retired members are in red.</p>
+      </section>
+      <section class="card-table">
+        <table class="full-width t-left">
+          <thead>
+          <th>Name</th>
+          <th>DoB</th>
+          <th>Contact No.</th>
+          </thead>
+          <tr *ngFor="let member of runner.members">
+            <td>{{member.name}}</td>
+            <td>{{member.dob}}</td>
+            <td>{{member.contactNumber ? member.contactNumber : '-'}}</td>
+            <td *ngIf="!member.leader" class="t-right">
+              <button class="bg-yellow quick-buttons">Retire Member</button>
+            </td>
+            <td *ngIf="member.leader" class="t-right"></td>
+          </tr>
+        </table>
+      </section>
+
     </div>
+
+    <div class="col-4">
+
+      <section class="bg-light qr-card">
+        <h2>Team {{currentID.substr(2)}}</h2>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{currentID}}" alt="Team QR Code">
+        <div class="clear"></div>
+      </section>
+
+      <section class="card bg-light">
+        <h2 class="t-margin-bottom">Quick Functions</h2>
+        <button class="full-width quick-buttons">Edit Info</button>
+        <button class="full-width quick-buttons">Retire Whole Team</button>
+        <button class="full-width quick-buttons">Disqualify Team</button>
+        <button class="full-width quick-buttons bg-red">Delete Team</button>
+      </section>
+
+      <section class="card bg-light">
+        <h2>Catchers Card</h2>
+        <p class="t-margin-none">Team's catches are shown below. Click one to view more info about it.</p>
+      </section>
+      <section class="card-table">
+
+        <p class="t-center t-margin-top">This team hasn't been caught yet.</p>
+
+        <table *ngIf="!currentID" class="full-width t-left">
+          <thead>
+          <th>Time</th>
+          <th>Catcher</th>
+          </thead>
+          <tr *ngFor="let member of runner.members">
+            <td>{{member.name}}</td>
+            <td>{{member.dob}}</td>
+          </tr>
+        </table>
+
+      </section>
+    </div>
+
   </div>
 </div>
