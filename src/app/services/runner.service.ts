@@ -82,4 +82,14 @@ export class RunnerService {
     });
   }
 
+  addTeamMember(teamID: string, memberData: Member) {
+    this.runnerDoc = this.afs.doc<Runner>(environment.globals.game + '/' + environment.globals.year + '/runners/' + teamID);
+    this.runnerDoc.update({
+      members: firebase.firestore.FieldValue.arrayUnion(memberData),
+      noMembers: firebase.firestore.FieldValue.increment(1)
+    }).catch(error => {
+      alert(error);
+    });
+  }
+
 }

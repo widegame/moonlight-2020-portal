@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SettingsService} from '../../services/settings.service';
 import {Member, Runner, RunnerService} from '../../services/runner.service';
 import {take} from 'rxjs/operators';
@@ -8,7 +8,7 @@ import {take} from 'rxjs/operators';
   templateUrl: './add-runner.component.html',
   styleUrls: ['./add-runner.component.css']
 })
-export class AddRunnerComponent implements OnInit {
+export class AddRunnerComponent {
 
   currentTab = 1;
   error = '';
@@ -34,9 +34,6 @@ export class AddRunnerComponent implements OnInit {
   }];
 
   constructor(public settingsService: SettingsService, public runnerService: RunnerService) {
-  }
-
-  ngOnInit() {
   }
 
   nextTab() {

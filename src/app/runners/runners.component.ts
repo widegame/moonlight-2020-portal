@@ -32,7 +32,6 @@ export class RunnersComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('Unsubscribing from data streams.');
     this.runnerSubscription.unsubscribe();
   }
 

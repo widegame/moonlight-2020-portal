@@ -13,7 +13,11 @@
     <div class="col-8">
 
       <section>
-        <h1 class="t-margin-bottom t-margin-top">{{runner.name}}</h1>
+        <h1 class="t-margin-bottom t-margin-top">
+          {{runner.name}}
+          <span *ngIf="runner.status == 'retired'" class="t-red"> (Retired)</span>
+          <span *ngIf="runner.status == 'disqualified'" class="t-red"> (Disqualified)</span>
+        </h1>
         <div class="team-card-tags">
           <span class="bg-purple t-capitalize">{{runner.category}}</span>
           <span *ngIf="runner.registered" class="bg-teal">Registered</span>
@@ -23,8 +27,10 @@
           <div class="clear"></div>
         </div>
         <p class="t-margin-top">Group: <span class="t-purple">{{runner.group}}</span></p>
-        <p *ngIf="runner.checkedIn" class="t-margin-top">This team was checked in at <span
-          class="t-purple">{{runner.checkInTime}}</span>.</p>
+        <p *ngIf="runner.checkedIn" class="t-margin-top">This team was checked in at
+          <span class="t-purple">{{runner.checkInTime}}</span>.</p>
+        <p *ngIf="runner.status == 'disqualified'" class="t-margin-top">This team was disqualified for:
+          <span class="t-purple">{{runner.reason}}</span>.</p>
       </section>
 
       <section class="bg-light card">
@@ -43,7 +49,7 @@
 
       <section class="card bg-light">
         <h2 class="float-left t-margin-bottom">Team Members</h2>
-        <button class="bg-purple float-right">Edit Members</button>
+        <button class="bg-purple float-right">Add Member</button>
         <div class="clear"></div>
         <p class="t-margin-none">Below are all the members of this running team. The team leader shows in purple.
           Retired members are in red.</p>
@@ -67,6 +73,28 @@
         </table>
       </section>
 
+      <section class="card bg-light">
+        <h2 class="float-left t-margin-bottom">Penalties</h2>
+        <button class="bg-purple float-right">Add Penalty</button>
+        <div class="clear"></div>
+        <p class="t-margin-none">These are all the lives lost due to penalty for out of bounds and retirements etc.</p>
+      </section>
+      <section class="card-table">
+        <p class="t-center t-margin-top" *ngIf="runner.penalties.length == 0">This team has not been penalised.</p>
+        <table *ngIf="runner.penalties.length > 0" class="full-width t-left">
+          <thead>
+          <th>Reason</th>
+          <th>Lives Lost</th>
+          <th>Description</th>
+          </thead>
+          <tr *ngFor="let penalty of runner.penalties">
+            <td>{{penalty.type}}</td>
+            <td>{{penalty.lives}}</td>
+            <td>{{penalty.description}}</td>
+          </tr>
+        </table>
+      </section>
+
     </div>
 
     <div class="col-4">
@@ -78,7 +106,7 @@
       </section>
 
       <section class="card bg-light">
-        <h2 class="t-margin-bottom">Quick Functions</h2>
+        <h2 class="t-margin-bottom">Quick Actions</h2>
         <button class="full-width quick-buttons">Edit Info</button>
         <button class="full-width quick-buttons">Retire Whole Team</button>
         <button class="full-width quick-buttons">Disqualify Team</button>
@@ -86,7 +114,9 @@
       </section>
 
       <section class="card bg-light">
-        <h2>Catchers Card</h2>
+        <h2 class="float-left t-margin-bottom">Catch Card</h2>
+        <button class="bg-purple float-right">Add Catch</button>
+        <div class="clear"></div>
         <p class="t-margin-none">Team's catches are shown below. Click one to view more info about it.</p>
       </section>
       <section class="card-table">
