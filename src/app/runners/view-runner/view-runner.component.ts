@@ -29,7 +29,7 @@ export class ViewRunnerComponent implements OnDestroy {
 
   addMember() {
     this.runnerService.addTeamMember(this.currentID, {
-      name: 'New Person',
+      name: 'My Name',
       dob: '22/01/2000',
       contactNumber: '',
       leader: false,
@@ -38,4 +38,21 @@ export class ViewRunnerComponent implements OnDestroy {
     });
   }
 
+  retireMember(i) {
+    this.runner.members[i].retired = true; // Set member's retirement to true
+    this.runner.noActiveMembers--; // Decrement active runners
+    if (this.runner.noActiveMembers < 4) {
+      this.runner.status = 'retired';
+    }
+    this.runnerService.updateRunner(this.currentID, this.runner);
+  }
+
+  unRetireMember(i) {
+    this.runner.members[i].retired = false; // Set member's retirement to true
+    this.runner.noActiveMembers++; // Decrement active runners
+    if (this.runner.noActiveMembers >= 4) {
+      this.runner.status = 'active';
+    }
+    this.runnerService.updateRunner(this.currentID, this.runner);
+  }
 }

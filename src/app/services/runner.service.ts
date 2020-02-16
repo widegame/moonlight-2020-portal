@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
+import * as firebase from 'firebase';
 
 export interface Runner {
   name: string;
@@ -83,11 +84,20 @@ export class RunnerService {
   }
 
   addTeamMember(teamID: string, memberData: Member) {
-    this.runnerDoc = this.afs.doc<Runner>(environment.globals.game + '/' + environment.globals.year + '/runners/' + teamID);
-    this.runnerDoc.update({
+    console.log('Adding Member');
+    this.afs.doc(environment.globals.game + '/' + environment.globals.year + '/runners/' + teamID).update({
       members: firebase.firestore.FieldValue.arrayUnion(memberData),
-      noMembers: firebase.firestore.FieldValue.increment(1)
+      noMembers: firebase.firestore.FieldValue.increment(1),
+      noActiveMembers: firebase.firestore.FieldValue.increment(1),
     }).catch(error => {
+      alert(error);
+    });
+  }
+
+  updateRunner(teamID: string, runnerData: Runner) {
+    this.afs.doc(environment.globals.game + '/' + environment.globals.year + '/runners/' + teamID)
+      .update(runnerData).then(() => { console.log('Runner Updated'); })
+      .catch(error => {
       alert(error);
     });
   }

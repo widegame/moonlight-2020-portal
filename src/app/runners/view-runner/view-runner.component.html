@@ -29,8 +29,8 @@
         <p class="t-margin-top">Group: <span class="t-purple">{{runner.group}}</span></p>
         <p *ngIf="runner.checkedIn" class="t-margin-top">This team was checked in at
           <span class="t-purple">{{runner.checkInTime}}</span>.</p>
-        <p *ngIf="runner.status == 'disqualified'" class="t-margin-top">This team was disqualified for:
-          <span class="t-purple">{{runner.reason}}</span>.</p>
+        <p *ngIf="runner.status == 'disqualified'" class="t-margin-to t-red">This team was disqualified for: {{runner.reason}}.</p>
+        <p *ngIf="runner.status == 'retired'" class="t-margin-top t-red">This team has been retired.</p>
       </section>
 
       <section class="bg-light card">
@@ -49,10 +49,10 @@
 
       <section class="card bg-light">
         <h2 class="float-left t-margin-bottom">Team Members</h2>
-        <button class="bg-purple float-right">Add Member</button>
+        <button class="bg-purple float-right" (click)="addMember()">Add Member</button>
         <div class="clear"></div>
         <p class="t-margin-none">Below are all the members of this running team. The team leader shows in purple.
-          Retired members are in red.</p>
+          Retired members are in red. There are <strong>{{runner.noMembers}}</strong> members in this team, <strong>{{runner.noActiveMembers == runner.noMembers ? 'all' : runner.noActiveMembers}}</strong> of which are not retired.</p>
       </section>
       <section class="card-table">
         <table class="full-width t-left">
@@ -61,12 +61,13 @@
           <th>DoB</th>
           <th>Contact No.</th>
           </thead>
-          <tr *ngFor="let member of runner.members">
-            <td>{{member.name}}</td>
+          <tr [class.t-red]="member.retired" [class.t-purple]="member.leader" *ngFor="let member of runner.members, let i = index">
+            <td>{{member.name}}<span *ngIf="member.leader"> (Leader)</span><span *ngIf="member.retired"> (Retired)</span> </td>
             <td>{{member.dob}}</td>
             <td>{{member.contactNumber ? member.contactNumber : '-'}}</td>
             <td *ngIf="!member.leader" class="t-right">
-              <button class="bg-yellow quick-buttons">Retire Member</button>
+              <button *ngIf="!member.retired" class="bg-yellow quick-buttons" (click)="retireMember(i)">Retire Member</button>
+              <button *ngIf="member.retired" class="bg-teal quick-buttons" (click)="unRetireMember(i)">Un-Retire Member</button>
             </td>
             <td *ngIf="member.leader" class="t-right"></td>
           </tr>
