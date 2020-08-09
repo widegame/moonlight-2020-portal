@@ -84,6 +84,11 @@ h1 {
   font-size: 2em;
 }
 
+.col-9 {
+  width: 75%;
+  float: left;
+}
+
 .col-8 {
   width: 66.6%;
   float: left;

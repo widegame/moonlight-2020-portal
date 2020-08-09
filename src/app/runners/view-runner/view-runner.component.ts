@@ -28,7 +28,7 @@ export class ViewRunnerComponent implements OnDestroy {
   }
 
   addMember() {
-    this.runnerService.addTeamMember(this.currentID, {
+    this.runner.members.push({
       name: 'My Name',
       dob: '22/01/2000',
       contactNumber: '',
@@ -36,6 +36,7 @@ export class ViewRunnerComponent implements OnDestroy {
       retired: false,
       memNo: ''
     });
+    this.runnerService.updateRunner(this.currentID, this.runner);
   }
 
   retireMember(i) {

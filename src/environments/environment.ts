@@ -14,6 +14,9 @@ export const environment = {
     appId: '1:459505349782:web:3b3ca7ce2d795fcafbbeb7',
     measurementId: 'G-4S3JJFHKRN'
   },
+  mapbox: {
+    accessToken: 'pk.eyJ1IjoiZ2VvcmdlcGVhcnMiLCJhIjoiY2psYTBkYW1wMGlobzNxbnhpZTFsbzNmYSJ9.0nde-zIWKzFWwB8BNelGfQ'
+  },
   globals: {
     title: 'Moonlight 2020', // Add in environments.prod.ts too!!
     game: 'moonlight',

@@ -64,6 +64,7 @@ export class RunnerService {
     this.runnersCollection = this.afs.collection<Runner>(environment.globals.game + '/' + environment.globals.year + '/runners');
     return this.runners = this.runnersCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
+        console.log('Getting data...');
         const data = a.payload.doc.data() as Runner;
         const id = a.payload.doc.id;
         return {id, ...data};
@@ -73,6 +74,7 @@ export class RunnerService {
 
   getRunner(id: string) {
     this.runnerDoc = this.afs.doc<Runner>(environment.globals.game + '/' + environment.globals.year + '/runners/' + id);
+    console.log('Getting data...');
     return this.runner = this.runnerDoc.valueChanges();
   }
 
