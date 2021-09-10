@@ -19,9 +19,9 @@ import {CatchersComponent} from './catchers/catchers.component';
 import {AddRunnerComponent} from './runners/add-runner/add-runner.component';
 import {ViewRunnerComponent} from './runners/view-runner/view-runner.component';
 import {NotFoundComponent} from './errors/not-found/not-found.component';
-import { BoundariesComponent } from './settings/boundaries/boundaries.component';
-import { SettingsComponent } from './settings/settings.component';
-import { SettingsHeaderComponent } from './settings/settings-header/settings-header.component';
+// import { BoundariesComponent } from './settings/boundaries/boundaries.component';
+// import { SettingsComponent } from './settings/settings.component';
+// import { SettingsHeaderComponent } from './settings/settings-header/settings-header.component';
 
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 
@@ -37,9 +37,9 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
     AddRunnerComponent,
     ViewRunnerComponent,
     NotFoundComponent,
-    BoundariesComponent,
-    SettingsComponent,
-    SettingsHeaderComponent
+    // BoundariesComponent,
+    // SettingsComponent,
+    // SettingsHeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -10,8 +10,8 @@ import {CatchersComponent} from './catchers/catchers.component';
 import {AddRunnerComponent} from './runners/add-runner/add-runner.component';
 import {ViewRunnerComponent} from './runners/view-runner/view-runner.component';
 import {NotFoundComponent} from './errors/not-found/not-found.component';
-import {SettingsComponent} from './settings/settings.component';
-import {BoundariesComponent} from './settings/boundaries/boundaries.component';
+// import {SettingsComponent} from './settings/settings.component';
+// import {BoundariesComponent} from './settings/boundaries/boundaries.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['sign-in']);
 
@@ -47,18 +47,18 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: {authGuardPipe: redirectUnauthorizedToLogin}
   },
-  {
-    path: 'settings',
-    component: SettingsComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: {authGuardPipe: redirectUnauthorizedToLogin}
-  },
-  {
-    path: 'settings/boundaries',
-    component: BoundariesComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: {authGuardPipe: redirectUnauthorizedToLogin}
-  },
+  // {
+  //   path: 'settings',
+  //   component: SettingsComponent,
+  //   canActivate: [AngularFireAuthGuard],
+  //   data: {authGuardPipe: redirectUnauthorizedToLogin}
+  // },
+  // {
+  //   path: 'settings/boundaries',
+  //   component: BoundariesComponent,
+  //   canActivate: [AngularFireAuthGuard],
+  //   data: {authGuardPipe: redirectUnauthorizedToLogin}
+  // },
   {
     path: '404',
     component: NotFoundComponent,
